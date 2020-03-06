@@ -26,3 +26,4 @@ SuRF: Practical Range Query Filtering with Fast Succinct Tries
 * https://github.com/JunpengCode/awesome-database-learning
 * https://www.kawabangga.com/db
 * http://www.cs.cmu.edu/afs/cs/academic/class/15721-f01/www/readings.html
+* http://pages.cs.wisc.edu/~ra/Classes/739-sp20/readings.html
