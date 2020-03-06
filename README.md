@@ -2,7 +2,7 @@
  
 #### 概述
 
-该仓库将会介绍一些数据库领域的经典论文，包括SIGMOD、VLDB、ICDE、FAST、ATC中的best paper，分组了部分论文，根据自己的理解，可能不全面。
+该仓库将会介绍一些数据库领域的经典论文，包括SIGMOD、VLDB、ICDE、FAST、ATC、NSDI中的best paper，分组了部分论文，根据自己的理解，可能不全面。
 
 #### **论文介绍**
 
@@ -27,3 +27,4 @@ SuRF: Practical Range Query Filtering with Fast Succinct Tries
 * https://www.kawabangga.com/db
 * http://www.cs.cmu.edu/afs/cs/academic/class/15721-f01/www/readings.html
 * http://pages.cs.wisc.edu/~ra/Classes/739-sp20/readings.html
+* FAST/NSDI https://www.usenix.org/publications/proceedings?page=2
