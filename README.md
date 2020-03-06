@@ -19,7 +19,7 @@ SuRF: Practical Range Query Filtering with Fast Succinct Tries
 文章支持当文件系统是NTFS，DBMS是SQL Server 2005时，当文件大小下雨256KB时，DBMS管理更加高效，当对象大于1MB时，采用filesystem管理更加高效。文章还提出数据库
 设计者应该考虑加入文件系统的碎片整理过程。**注：现今，当我们在存储视频等比较大的文件时，尽量不要直接用BLOB存储在数据库中，而是应该用filesystem管理，在数据库中可用只存储文件链接。**
 
-* Architecture of database system 数据库体系结构最好的文章。作者图灵奖得主Stonebraker。包括processes model、query processing、storage and transaction、others，其中的事务存储部分严格区分了lock和latch，这两个改变在实现buffer polls时非常重要，latch在使用上，实际上用mutex来实现。
+* Architecture of database system 数据库体系结构最好的文章。作者图灵奖得主Stonebraker。包括processes model、query processing、storage and transaction、others，其中的事务存储部分严格区分了lock和latch，这两个改变在实现buffer pools时非常重要，latch在使用上，实际上用mutex来实现。
 
 #### 参考资料
 * https://github.com/JunpengCode/databaseology
