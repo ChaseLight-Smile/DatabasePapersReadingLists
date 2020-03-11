@@ -23,6 +23,10 @@ is present, then bloom filter returns true. 该命题的逆否命题是：如果
 
     * Architecture of database system 数据库体系结构最好的文章。作者图灵奖得主Stonebraker。包括processes model、query processing、storage and transaction、others，其中的事务存储部分严格区分了lock和latch，这两个改变在实现buffer pools时非常重要，latch在使用上，实际上用mutex来实现。
 
+* consistency or (consensus)
+    * Paxos Made Simple
+    * Strong and Efficient Consistency with Consistency-Aware Durability (FAST 2020 best paper)
+
 #### 参考资料
 * https://github.com/JunpengCode/databaseology
 * https://github.com/JunpengCode/awesome-database-learning
