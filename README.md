@@ -2,7 +2,7 @@
  
 #### 概述
 
-该仓库将会介绍一些数据库领域的经典论文，包括SIGMOD、VLDB、ICDE、FAST、ATC、NSDI中的best paper，分组了部分论文，根据自己的理解，可能不全面。
+该仓库将会介绍一些数据库、分布式系统领域的经典论文，包括SIGMOD、VLDB、ICDE、FAST、ATC、NSDI、SOSP、ASPLOS、PPoPP、EuroSys、OSDI，按照自己的理解点评（总结介绍）一些论文的思路和创新点。
 
 #### **论文介绍**
 
