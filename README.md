@@ -55,6 +55,7 @@ Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统
     * Lock-Free Data Structures with Hazard Pointers<br>
 hazard pointer能够优雅的实现lock-free的内存回收，hazard pointer实际上是一个single-writer multi-reader shared pointer。这个指针会被reader thread拥有（reader writer会在要读的数据上分配一个hazard pointer），一旦reader pointer拥有了这个指针，就会告知其它writer thread我正在读这个数据，你可以替换它，但是你不能改变它的内容，也不能删除它（也就是说你只能读取到这个数据，但是writer thread不能做任何的修改操作，这对于writer thread来说也是一种progress。也可以说是保证了所有线程尽量wait-free）。hazard pointer是一个复杂的结构，它会保存系统中所有线程（all threads）的读请求中访问的存储区域，当一个写线程copy了一个新的存储区域的副本，并且做了修改之后成为了“新”的副本（也就是之后的读写操作应该建立在该副本之上），然后这个写线程必须要将旧的副本删除，这显然会导致一个极其危险的操作，因此，实际上hazard pointer要求在删除时，扫描整个hazard结构，做一个集合的差运算，如果这个要淘汰的旧的副本不在这个结构中，说明该副本能够被安全的删除，这就是其核心思想。至于hazard point可以采用链表来维护其结构，也可以采用hash table来维护，不同的结构，性能不同。
     * Hazard Pointers Safe Memory Reclamation for Lock-Free Objects<br>
+hazard pointer(危险指针)，为什么叫做“危险指针”？本文给出了一些简单的理由：读线程将要读取的存储地址加入到所有线程的“危险指针”结构中，也就告诉其他线程，该读线程之后的所有读写内容的操作将不会对该存储地址进行任何验证。这个操作被认为是“危险”的。其他的线程在看到该存储内容是“危险”的，将不会删除或者重用该地址的内容。从代码中我们能够看出**将存储引用部分将入到hazard pointer中的动作必须要早于其他线程执行retired操作之前**。本文给出了hazard pointer如何解决ABA问题的证明，实际上在hazard pointer method中直接避免了ABA问题的发生。早期的文献已经证明，在存在GC的系统中一直是ABA-safe，本文证明在hazard pointer方法中也是ABA-safe。
     * Wait-free synchronization<br>
     * C++ and the Perils of Double-Checked Locking <br>
     * How to Copy Files (FAST 2020)<br>
