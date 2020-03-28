@@ -38,6 +38,7 @@ Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统
     * Amazon Aurora: Design Considerations for High Throughput Cloud-Native Relational Databases<br>
     * (SPARK)Resilient Distributed Datasets：A Fault-Tolerant Abstraction for In-Memory Cluster Computing<br>
     * HadoopDB: An Architectural Hybrid of MapReduce and DBMS Technologies for Analytical Workloads or Integration of LargeScale Data Processing Systems and Traditional Parallel Database Technology<br>
+    * Soft Updates: A Solution to the Metadata Update Problem in File Systems<br>
 
 
 * consistency or (consensus)
