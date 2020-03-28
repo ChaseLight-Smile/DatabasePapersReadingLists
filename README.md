@@ -79,8 +79,9 @@ ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算
     * Cloud Programming Simplified: A Berkeley View on Serverless Computing <br>
 该文是serverless最基础论文。
 
-* Data Mining
+* Data Mining and Machine Leaening
 * Crowdsourcing
+* Data Cleaning
 
 #### 参考资料
 * https://github.com/JunpengCode/databaseology
