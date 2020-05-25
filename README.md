@@ -1,4 +1,7 @@
 ### 数据库论文阅读目录
+
+![Github stars](https://img.shields.io/github/stars/JunpengCode/DatabasePapersReadingLists.svg) ![](https://img.shields.io/github/license/JunpengCode/DatabasePapersReadingLists.svg) ![Github stars](https://img.shields.io/github/forks/JunpengCode/DatabasePapersReadingLists.svg) ![Github Release](https://img.shields.io/github/release/JunpengCode/DatabasePapersReadingLists.svg)
+
  
 #### 概述
 
