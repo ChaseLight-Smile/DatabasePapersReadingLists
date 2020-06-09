@@ -95,3 +95,4 @@ ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算
 * http://www.cs.cmu.edu/afs/cs/academic/class/15721-f01/www/readings.html
 * http://pages.cs.wisc.edu/~ra/Classes/739-sp20/readings.html
 * FAST/NSDI https://www.usenix.org/publications/proceedings?page=2
+* Sigmod 2020 papers https://research.cs.wisc.edu/dbworld/messages/2020-05/1588970186.html
