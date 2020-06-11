@@ -15,7 +15,11 @@
 2018 sigmod best paper，该论文出自andy pavlo的学生。andy在数据库方面有独特的见解。bloom filter在disk-oriented database management system中有特别的作用：在内存快读判断一个key是否存在，这些key就是存储的磁盘上的数据本身。该结构存在两个主要问题：（1）bloom filter存在“one-side error”也就是说：if key is present, then bloom filter returns true. 该命题的逆否命题是：如果bloom filter返回false，那么说明key一定不存在。（2）bloom filter只支持point query，但是不支持range query。针对bloom filter存在的第一个问题，要从设计合适的hash function等角度入手解决，比较难。针对第二个问题，SuRF采用了FST数据结构解决了不支持范围查询的问题，能够给出开区间[key, +inf）,[key1, key2], (-inf, +inf)上的range query问题。
 	* SAL-Hashing： A Self-Adaptive Linear Hashing Index for SSDs<br>
 	* The Case for Learned Index Structures<br>
-Google在系统索引与Deep Learning结合的研究，AI for Sytstem是当前的研究热点。
+Google在系统索引与Deep Learning结合的研究，ML for Sytstem是当前的研究热点。缺点是不能执行update操作。
+		* ALEX: An Updatable Adaptive Learned Index<br>
+上篇文章的作者改进Update操作的文章。
+		* Learning Multi-dimensional Indexes<br>
+上篇文章作者在多维索引上的工作进展。
 
 * Architecture
     * To BLOB or Not To BLOB: Large Object Storage in a Database or a Filesystem?<br>
@@ -44,7 +48,8 @@ Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统
     * (SPARK)Resilient Distributed Datasets：A Fault-Tolerant Abstraction for In-Memory Cluster Computing<br>
     * HadoopDB: An Architectural Hybrid of MapReduce and DBMS Technologies for Analytical Workloads or Integration of LargeScale Data Processing Systems and Traditional Parallel Database Technology<br>
     * Soft Updates: A Solution to the Metadata Update Problem in File Systems<br>
-
+	
+	* Rethinking Database High Availability with RDMA Networks<br>
 
 * consistency or (consensus)
     * Paxos Made Simple<br>
@@ -72,6 +77,7 @@ hazard pointer(危险指针)，为什么叫做“危险指针”？本文给出�
 * query processing or query plan
     * Encapsulation of Parallehsm in the Volcano Query Procesing System <br>
     * LEO: DB2’s LEarning Optimizer <br>
+	* Neo: A Learned Query Optimizer<br>
     
 * recovery
     * aries: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging<br>
@@ -83,10 +89,6 @@ ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算
 文章主要为了降低serverless场景下应用启动的时间，作者认为该时间应该分为三个部分：kernel启动时间；application依赖环境启动时间；application运行时间，除了app运行时间以外的两个时间都应该降下来，通过设计了合理的image机制，采用mmap将image映射到内存中，并建立合适的template，加速整个启动过程。第一篇serverless的文章，比较粗浅，希望以后多看一些这方面内容吧。<br>
     * Cloud Programming Simplified: A Berkeley View on Serverless Computing <br>
 该文是serverless最基础论文。
-
-* Data Mining and Machine Leaening
-* Crowdsourcing
-* Data Cleaning
 
 #### 参考资料
 * https://github.com/JunpengCode/databaseology
