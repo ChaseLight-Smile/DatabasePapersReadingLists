@@ -74,7 +74,8 @@ hazard pointer(危险指针)，为什么叫做“危险指针”？本文给出�
     * C++ and the Perils of Double-Checked Locking <br>
     * How to Copy Files (FAST 2020)<br>
 该文是如何优雅的实现lock-free的copy操作和内存区域deallocation操作当前最新的研究。采用了树形结构来维护一个hazard pointer结构，较早之前的研究都是采用了single-linked list 或者 hash table。本文第一作者非常擅长lock-free数据结构的设计与实现。
-
+	* Latch-free Synchronization in Database Systems Silver Bullet or Fool's Gold<br>
+图灵奖得主stonebreker的学生Abadi的文章，文章的一作是Abadi的博士，获得了2020 jim gray优秀博士论文奖，该文是对Latch-free的批判文章。我认为本文存在的问题是：立意不正确。latch-based存在就是假设对临界资源的访问存在大量竞争，而latch-free存在本身就是假设对临界资源的访问竞争发生可能性很小。本文得出的结果是：high contention condition，latch-free不合适，这个结论显得过于苍白，甚至感觉有些滑稽。
 
 * query processing or query plan
     * Encapsulation of Parallehsm in the Volcano Query Procesing System <br>
