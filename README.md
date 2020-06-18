@@ -20,6 +20,8 @@ Google在系统索引与Deep Learning结合的研究，ML for Sytstem是当前�
 上篇文章的作者改进Update操作的文章。
 		* Learning Multi-dimensional Indexes<br>
 上篇文章作者在多维索引上的工作进展。
+		* XIndex: A Scalable Learned Index for Multicore Data Storage<br>
+上海交通大学陈海波组在学习型索引上的研究进展。
 
 * Architecture
     * To BLOB or Not To BLOB: Large Object Storage in a Database or a Filesystem?<br>
