@@ -105,3 +105,4 @@ ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算
 * FAST/NSDI https://www.usenix.org/publications/proceedings?page=2
 * Sigmod 2020 papers https://dl.acm.org/doi/proceedings/10.1145/3403425
 * crowdsourcing https://research.yandex.com/tutorials/crowd/kdd-2019
+* http://coding-geek.com/how-databases-work/
