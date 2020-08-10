@@ -10,7 +10,7 @@
 #### **论文介绍**
 
 
-* index
+* Index
     * SuRF: Practical Range Query Filtering with Fast Succinct Tries<br>
 2018 sigmod best paper，该论文出自andy pavlo的学生。andy在数据库方面有独特的见解。bloom filter在disk-oriented database management system中有特别的作用：在内存快读判断一个key是否存在，这些key就是存储的磁盘上的数据本身。该结构存在两个主要问题：（1）bloom filter存在“one-side error”也就是说：if key is present, then bloom filter returns true. 该命题的逆否命题是：如果bloom filter返回false，那么说明key一定不存在。（2）bloom filter只支持point query，但是不支持range query。针对bloom filter存在的第一个问题，要从设计合适的hash function等角度入手解决，比较难。针对第二个问题，SuRF采用了FST数据结构解决了不支持范围查询的问题，能够给出开区间[key, +inf）,[key1, key2], (-inf, +inf)上的range query问题。
 	* SAL-Hashing： A Self-Adaptive Linear Hashing Index for SSDs<br>
@@ -23,6 +23,10 @@ Google在系统索引与Deep Learning结合的研究，ML for Sytstem是当前�
 		* XIndex: A Scalable Learned Index for Multicore Data Storage<br>
 			* XIndex： A Scalable Learned Index for Multicore Data Storage - extention <br>
 上海交通大学陈海波组在学习型索引上的研究进展。
+
+* Sorting
+	* Implementing Sorting in Database Systems</br>
+Goetz Graefe老爷子大作，他写了关于B-tree、Volcano查询处理模型等。
 
 * Architecture
     * To BLOB or Not To BLOB: Large Object Storage in a Database or a Filesystem?<br>
@@ -54,7 +58,7 @@ Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统
 	
 	* Rethinking Database High Availability with RDMA Networks<br>
 
-* consistency or (consensus)
+* Consistency or (consensus)
     * Paxos Made Simple<br>
     * raft: In Search of an Understandable Consensus Algorithm <br>
     * (raft-ATC)In Search of an Understandable Consensus Algorithm<br>
@@ -65,7 +69,7 @@ Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统
 	* Hermes: a Fast, Fault-Tolerant and Linearizable Replication Protocol<br>
 该篇文章出自ASPLOS'2020，基于广播的member-ship协议，时间复杂度为O(logn)，和Dynamo中的gossip-based确认ring中节点是否alive方法很像，实现比较经典。
 
-* lock-free data structure
+* Lock-free data structure
     * Lock-Free Data Structures<br>
 对于熟悉多线程编程的programmer来说，大家很熟悉应该使用各种lock（shared lock、exclusive clock、unique lock）等锁定critical section部分，这种方法通常称为latch-full，使得可能发生race condition的critical section部分能够被串行化访问，实际上这是一种非常低效的访问方式，比如：当两个线程访问相同的B+-tree的叶子节点做范围扫描，并且两者分别向相对（如 ->  B+-tree leaves  <-）的方向访问，这样的情况下很容易造成死锁，我们需要更多的机制来避免这样的情况的发生，最简单的方法是在访问开始时，获得所有需要访问的资源的锁，当然这种实现是低效的，其中有包括2PC、S2PC等方法。但是实际上在多线程编程社区还有一种lock-free的编程模式，实际上我更倾向于叫latch-free，锁是一个较为higher level的结构，在ctitical section部分叫latch-free更加合适。本文主要是讲解如何应用latch-free技术实现基本的数据结构，近五年来（2015年至今）很多的DBMS实现技术中，大部分都开始采用latch-free的数据结构，比如andy pavlo的peleton等。在latch-free的编程世界中，你几乎不能原子的做大部分的操作，只有仅仅一小部分能够被原子的完成，这加大了latch-free编程的难度。但实际上从2004年开始世界上就陆续有很多人在接触latch-free技术。CoW、MVCC都是经典的lock-free的实现，并且由于实现这些技术的系统中都有很强的GC机制，所以使得lock-free的内存资源回收变得简单。在这篇文章中，最终实现了一种lock-free的map，但是实际上，在update操作中还是加了隐形的锁，在大量并发读操作请求下，导致update操作产生饥饿，本文没有能解决这个问题，在Lock-Free Data Structures with Hazard Pointers文章中，真正解决了lock-free结构实现下产生的update饥饿问题，并且整个实现非常优雅。本文给出了两种不是很优雅的lock-free的是方法：（1）采用DCAS（double Compare and Swap）原语，实际上在大部分的CPU指令中并没有实现，DCAS的本质是能够原子的交换两个指针的值；（2）基于两次CAS原语的map实现，该种实现方法能够解决lock-free存在的问题，但是带来了新的问题：写饥饿问题，也就是仅仅适合read not many的场景。
     * Lock-Free Data Structures with Hazard Pointers<br>
@@ -80,17 +84,17 @@ hazard pointer(危险指针)，为什么叫做“危险指针”？本文给出�
 	* Latch-free Synchronization in Database Systems Silver Bullet or Fool's Gold<br>
 图灵奖得主stonebreker的学生Abadi的文章，文章的一作是Abadi的博士，获得了2020 jim gray优秀博士论文奖，该文是对Latch-free的批判文章。我认为本文存在的问题是：立意不正确。latch-based存在就是假设对临界资源的访问存在大量竞争，而latch-free存在本身就是假设对临界资源的访问竞争发生可能性很小。本文得出的结果是：high contention condition，latch-free不合适，这个结论显得过于苍白，甚至感觉有些滑稽。
 
-* query processing or query plan
+* Query processing or query plan
     * Encapsulation of Parallehsm in the Volcano Query Procesing System <br>
     * LEO: DB2’s LEarning Optimizer <br>
 	* Neo: A Learned Query Optimizer<br>
     
-* recovery
+* Recovery
     * aries: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging<br>
 ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算法作故障恢复，但是每个系统的实现可能略微有些差距。ARIES依赖WAL日志，并且规定数据真正写入到磁盘之前，日志必须首先写入磁盘，其引入了pageLSN，recoLSN、flushLSN、MasterRecord概念，使得log能够完整的追踪整个日志的状态，还提出了CLR等强有力的日志回滚机制，能够保证在log中如何实现回滚操作。LSN（log sequence number）是一个强大的机制，它本身是一个单调递增的counter，如何实现这个counter是一个比较重要的技术，尤其在分布式数据库中。很多当前最新的与事务相关的文章都借鉴了这个思想，比如Strong and Efficient Consistency with Consistency-Aware Durability (FAST 2020 best paper)中的durable index和persist index、update index也都是借鉴了log的LSN机制。该文较长，并且数学抽象较好，需要花费不少时间才能完全理解。
     
 
-* serverless
+* Serverless
     * Catalyzer: Sub-millisecond Startup for Serverless Computing withInitialization-less Booting.(ASPLOS 2020)<br>
 文章主要为了降低serverless场景下应用启动的时间，作者认为该时间应该分为三个部分：kernel启动时间；application依赖环境启动时间；application运行时间，除了app运行时间以外的两个时间都应该降下来，通过设计了合理的image机制，采用mmap将image映射到内存中，并建立合适的template，加速整个启动过程。第一篇serverless的文章，比较粗浅，希望以后多看一些这方面内容吧。<br>
     * Cloud Programming Simplified: A Berkeley View on Serverless Computing <br>
