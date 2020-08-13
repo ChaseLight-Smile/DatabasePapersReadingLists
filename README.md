@@ -101,8 +101,7 @@ ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算
 该文是serverless最基础论文。
 
 #### 参考资料
-* https://github.com/JunpengCode/databaseology
-* https://github.com/JunpengCode/awesome-database-learning
+
 * https://www.kawabangga.com/db
 * http://www.cs.cmu.edu/afs/cs/academic/class/15721-f01/www/readings.html
 * http://pages.cs.wisc.edu/~ra/Classes/739-sp20/readings.html
