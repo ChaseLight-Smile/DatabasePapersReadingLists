@@ -23,6 +23,14 @@ Google在系统索引与Deep Learning结合的研究，ML for Sytstem是当前�
 		* XIndex: A Scalable Learned Index for Multicore Data Storage<br>
 			* XIndex： A Scalable Learned Index for Multicore Data Storage - extention <br>
 上海交通大学陈海波组在学习型索引上的研究进展。
+    * The Ubiquitous B-Tree<br>
+    * BzTree: A High-Performance Latch-free Range Index for Non-Volatile Memory<br>
+    * Modern B-Tree Techniques<br>
+    * The Bw-Tree: A B-tree for New Hardware Platforms<br>
+    * Efficient Locking for Concurrent Operations On B-Trees<br>
+CMU大佬巨作 B-Link tree。
+    * Easy Lock-Free Indexing in Non-Volatile Memory<br>
+    * Persistent Bloom Filter Membership Testing for the Entire History
 
 * Sorting
 	* Implementing Sorting in Database Systems</br>
@@ -55,8 +63,8 @@ Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统
     * (SPARK)Resilient Distributed Datasets：A Fault-Tolerant Abstraction for In-Memory Cluster Computing<br>
     * HadoopDB: An Architectural Hybrid of MapReduce and DBMS Technologies for Analytical Workloads or Integration of LargeScale Data Processing Systems and Traditional Parallel Database Technology<br>
     * Soft Updates: A Solution to the Metadata Update Problem in File Systems<br>
-	
-	* Rethinking Database High Availability with RDMA Networks<br>
+    * Rethinking Database High Availability with RDMA Networks<br>
+    * CockroachDB: The Resilient Geo-Distributed SQL Database (SIGMOD 2020)
 
 * Consistency or (consensus)
     * Paxos Made Simple<br>
@@ -88,6 +96,7 @@ hazard pointer(危险指针)，为什么叫做“危险指针”？本文给出�
     * Encapsulation of Parallehsm in the Volcano Query Procesing System <br>
     * LEO: DB2’s LEarning Optimizer <br>
 	* Neo: A Learned Query Optimizer<br>
+    * Review of Algorithms for the Join Ordering Problem in Database Query Optimization <br>
     
 * Recovery
     * aries: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging<br>
