@@ -33,7 +33,8 @@ CMU大佬巨作 B-Link tree。
     * Persistent Bloom Filter Membership Testing for the Entire History
 	* LSM-based Storage Techniques: A Survey</br>
 该文的特点是简单易懂。
-
+		* Evaluation of High Performance Key-Value Stores</br>
+学习leveldb很好的指导论文。
 
 * Sorting
 	* Implementing Sorting in Database Systems</br>
