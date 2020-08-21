@@ -31,6 +31,9 @@ Google在系统索引与Deep Learning结合的研究，ML for Sytstem是当前�
 CMU大佬巨作 B-Link tree。
     * Easy Lock-Free Indexing in Non-Volatile Memory<br>
     * Persistent Bloom Filter Membership Testing for the Entire History
+	* LSM-based Storage Techniques: A Survey</br>
+该文的特点是简单易懂。
+
 
 * Sorting
 	* Implementing Sorting in Database Systems</br>
