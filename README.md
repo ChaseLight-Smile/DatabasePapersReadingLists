@@ -82,7 +82,7 @@ Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统
 该篇文章出自ASPLOS'2020，基于广播的member-ship协议，时间复杂度为O(logn)，和Dynamo中的gossip-based确认ring中节点是否alive方法很像，实现比较经典。
 * Time, Clocks and Ordering of events
 	* Time, Clocks, and the Ordering of Events in a Distributed System</br>
-论文主要讲述了Lamport Clocks，并且区别了time-of-day（wall） clock， monotonic clock, and logical clock。
+论文主要讲述了Lamport Clocks，并且区别了time-of-day（wall） clock， monotonic clock, and logical clock inicluding Lamport clock and vector clock。
     * detecting causal relationships in distributed computations in search of the holy grail</br>
 vector clock在分布式系统中是一个更重要的概念，可以用来解释happened before relations、causal order and FIFO order。
 * Lock-free data structure
