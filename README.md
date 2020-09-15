@@ -54,6 +54,10 @@ Goetz Graefe老爷子大作，他写了关于B-tree、Volcano查询处理模型�
 
     * FlashKV Accelerating KV Performance with Open-Channel SSDs (2017)<br>
     * MapReduce：Simplified Data Processing on Large Clusters<br>
+MapReduce一文确实是一篇极好的文章，按照其思想，它的输入输出全部存储在GFS（开源实现下，将数据存储在HDFS之上）上。从用户的角度看，不需要考虑load balance、communication等，只需要写业务
+端程序，也就是只需要设计合适的map和reduce函数即可，当然为了减少network communication代价，也可以写combiner function，实际上map和reduce阶段的操作就是两次hash。map tasks+reduce tasks= job，
+也就是说多个map tasks 和 多个reduce tasks构成一个job，map生成的intermmidiate key/values会存储在当前map节点的non-volatile存储设备上。接着master会调度将这些结果重新shuffle，然后将结果
+调度给reduce tasks，尽量保证不同reduce任务之间减少network communication。
     * GFS: The Google file system<br>
     * Bigtable: A Distributed Storage System for Structured Data<br>
     * Dynamo: Amazon’s Highly Available Key-value Store<br> 
