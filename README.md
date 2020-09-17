@@ -59,6 +59,12 @@ MapReduce一文确实是一篇极好的文章，按照其思想，它的输入�
 也就是说多个map tasks 和 多个reduce tasks构成一个job，map生成的intermmidiate key/values会存储在当前map节点的non-volatile存储设备上。接着master会调度将这些结果重新shuffle，然后将结果
 调度给reduce tasks，尽量保证不同reduce任务之间减少network communication。
     * GFS: The Google file system<br>
+Google经典三篇文章之一，GFS是google真正对工业界在数以千计的廉价商业化机器上实现的分布式文件系统，其设计包含一个master节点（为了保证reliable等特性，该机器通常会有replicas），一次写操作
+成功不仅需要在所有的chunkserver上写入数据，还需要master节点的operation logs落盘，master节点与传统单机DBMS的设计一样。master节点不真实存储任何client数据，client数据全部存储在chunkserver上，
+master节点保存三件事情：（1）filename -> array of chunk handler, （2）chunkhandler -> list of chunkserver, （3）logs and checkpoints，可以看出第一点和第二点主要是为了能够找到文件的真实位置，
+第三点主要是为了实现可靠性和可恢复性。当client节点将请求发送到master之后，master会将用户请求的所在的chunkserver位置发送给client，并且client端会缓存这些信息，以便于当client再次请求相同的数据时，
+不需要再次请求master，那么此时就有一个数据的一致性问题，一旦映射关系发生变化（比如某个chunkserver fails），这个cache信息就会失效，或者设计一个lease，给定时间窗口内有效，一旦过时cache就立即
+停止服务。在GFS中假设发生追加写操作的可能性远远大于随机写操作。
     * Bigtable: A Distributed Storage System for Structured Data<br>
     * Dynamo: Amazon’s Highly Available Key-value Store<br> 
 Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统，主要强调高可用、强扩展，使用读操作之后的最终一致性方案，这在2020年看来并不是一个好的选择，强一致性仍然是当前的需求。但是这不影响Dynamo成为高引用文章，其中很多的技术都成为很多数据库设计的规范。Dynamo的强扩展性（scale-out）采用了consistent hashing，当在其中增加或者删除node时，不要执行reshuffle（rehash）的操作，当然consistent hasing不是Dynamo提出的技术，早在2000年就提出额consistent hashing。读操作和写操作都松散的希望能得到系统中至少半数点的回应，但是考虑到可能存在网络分区等错误，所以仅仅是一个松散的建议，在写操作时，如果某个ring中的节点失去了联系，那么就讲备份数据写到下一个ring中，并记录好，等待该节点恢复后，再将数据拷贝过去。Dynamo在读操作也希望能有半数以上的节点返回数据，读出的数据会带有数据版本（文章中称为vector clock），如果发现数据不一致，允许在系统层面进行规约，但是不强制，因为Dynamo允许业务逻辑层处理数据的不一致性（比如在Amazon中，用户的购物车可以由用户自己来维护其一致性）。其中Grossip-based的协议实现信息在节点中的传播，这些古老的技术都在Dynamo得到了很好的应用。可以说Dynamo是结合了很多优秀实现技术的一个原型产品，堪称教科书式的实现。
