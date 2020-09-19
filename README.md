@@ -66,15 +66,25 @@ master节点保存三件事情：（1）filename -> array of chunk handler, （2
 不需要再次请求master，那么此时就有一个数据的一致性问题，一旦映射关系发生变化（比如某个chunkserver fails），这个cache信息就会失效，或者设计一个lease，给定时间窗口内有效，一旦过时cache就立即
 停止服务。在GFS中假设发生追加写操作的可能性远远大于随机写操作。
     * Bigtable: A Distributed Storage System for Structured Data<br>
+Google经典三篇文章之一，在Bigtable基础之上，Google实现了leveldb。bigtable实际上是一张”宽表“，我们知道，在经典的关系数据库范式理论中，首先数据库的表设计应该满足第一范式，也就是表中的属性不能再分，
+但是Bigtable使用了column family的特性，使得表的列属性实际上是可分的，同一个column family中可以有多个不同的列，这样子构成了bigtable的宽表模式。row-key按照字典序排序，并且row-key组合成了bigtable的tablet，每个tablet中
+可能包含很多个row-key，然后这些在内存中被组织成为memtale，当memtable达到一定的大小以后，就变为immutable memtable，接着被compaction成为SSTable，SSTtable也会被major compaction，当生成更大的SSTable之后，就会删除
+原来的SSTable，所以这个过程实际上存在非常多的写放大。为了出现fails时能够恢复，还存在了redo log，这一设计完全是从关系数据库的ARIES中迁移而来。最后还介绍了不少优化，我认为想要真正读懂这个文章
+的所有优化，尽量结合着leveldb的源码，并做一些实验。
     * Dynamo: Amazon’s Highly Available Key-value Store<br> 
-Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统，主要强调高可用、强扩展，使用读操作之后的最终一致性方案，这在2020年看来并不是一个好的选择，强一致性仍然是当前的需求。但是这不影响Dynamo成为高引用文章，其中很多的技术都成为很多数据库设计的规范。Dynamo的强扩展性（scale-out）采用了consistent hashing，当在其中增加或者删除node时，不要执行reshuffle（rehash）的操作，当然consistent hasing不是Dynamo提出的技术，早在2000年就提出额consistent hashing。读操作和写操作都松散的希望能得到系统中至少半数点的回应，但是考虑到可能存在网络分区等错误，所以仅仅是一个松散的建议，在写操作时，如果某个ring中的节点失去了联系，那么就讲备份数据写到下一个ring中，并记录好，等待该节点恢复后，再将数据拷贝过去。Dynamo在读操作也希望能有半数以上的节点返回数据，读出的数据会带有数据版本（文章中称为vector clock），如果发现数据不一致，允许在系统层面进行规约，但是不强制，因为Dynamo允许业务逻辑层处理数据的不一致性（比如在Amazon中，用户的购物车可以由用户自己来维护其一致性）。其中Grossip-based的协议实现信息在节点中的传播，这些古老的技术都在Dynamo得到了很好的应用。可以说Dynamo是结合了很多优秀实现技术的一个原型产品，堪称教科书式的实现。
-
-
+Dynamo是Amazon在2007年SOSP上发表的关于键值对存储的分布式系统，主要强调高可用、强扩展，使用读操作之后的最终一致性方案，这在2020年看来并不是一个好的选择，
+强一致性仍然是当前的需求。但是这不影响Dynamo成为高引用文章，其中很多的技术都成为很多数据库设计的规范。Dynamo的强扩展性（scale-out）采用了consistent hashing，
+当在其中增加或者删除node时，不要执行reshuffle（rehash）的操作，当然consistent hasing不是Dynamo提出的技术，早在2000年就提出额consistent hashing。
+读操作和写操作都松散的希望能得到系统中至少半数点的回应，但是考虑到可能存在网络分区等错误，所以仅仅是一个松散的建议，在写操作时，如果某个ring中的节点失去了联系，
+那么就讲备份数据写到下一个ring中，并记录好，等待该节点恢复后，再将数据拷贝过去。
+Dynamo在读操作也希望能有半数以上的节点返回数据，读出的数据会带有数据版本（文章中称为vector clock），如果发现数据不一致，允许在系统层面进行规约，但是不强制，
+因为Dynamo允许业务逻辑层处理数据的不一致性（比如在Amazon中，用户的购物车可以由用户自己来维护其一致性）。其中Grossip-based的协议实现信息在节点中的传播，
+这些古老的技术都在Dynamo得到了很好的应用。可以说Dynamo是结合了很多优秀实现技术的一个原型产品，堪称教科书式的实现。
+	* (SPARK)Resilient Distributed Datasets：A Fault-Tolerant Abstraction for In-Memory Cluster Computing<br>
     * Spanner: Google’s Globally-Distributed Database<br>
     * Spanner: Becoming a SQL System<br>
     * F1: A Distributed SQL Database That Scales<br>
     * Amazon Aurora: Design Considerations for High Throughput Cloud-Native Relational Databases<br>
-    * (SPARK)Resilient Distributed Datasets：A Fault-Tolerant Abstraction for In-Memory Cluster Computing<br>
     * HadoopDB: An Architectural Hybrid of MapReduce and DBMS Technologies for Analytical Workloads or Integration of LargeScale Data Processing Systems and Traditional Parallel Database Technology<br>
     * Soft Updates: A Solution to the Metadata Update Problem in File Systems<br>
     * Rethinking Database High Availability with RDMA Networks<br>
