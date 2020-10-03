@@ -138,6 +138,10 @@ ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算
     * Cloud Programming Simplified: A Berkeley View on Serverless Computing <br>
 该文是serverless最基础论文。
 
+* Survey
+	* Main memory database systems：an overview (H.G. Molina文章)<br>
+文章发表在1992年，但是对于main-memory问题的总结在今年看来仍然很适用，对比今天的main-memory db也都基本讨论了本文提出的所有问题，非常值得精读。
+
 #### 参考资料
 
 * https://www.kawabangga.com/db
