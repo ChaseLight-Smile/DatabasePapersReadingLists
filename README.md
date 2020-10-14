@@ -81,7 +81,11 @@ Dynamo在读操作也希望能有半数以上的节点返回数据，读出的�
 因为Dynamo允许业务逻辑层处理数据的不一致性（比如在Amazon中，用户的购物车可以由用户自己来维护其一致性）。其中Grossip-based的协议实现信息在节点中的传播，
 这些古老的技术都在Dynamo得到了很好的应用。可以说Dynamo是结合了很多优秀实现技术的一个原型产品，堪称教科书式的实现。
 	* (SPARK)Resilient Distributed Datasets：A Fault-Tolerant Abstraction for In-Memory Cluster Computing<br>
-    * Spark SQL: Relational Data Processing in Spark<br>
+    * Granularity of Locks and Degrees of Consistency in a Shared Data BaseL<br>
+jim gray首次在提出granularity of lockable object，也就是被锁对象的粒度，粒度这个词很抽象，在这里granularity = size指的是被锁对象的大小。该文提出了intension lock，使得在系统的并发度和overhead of lock manager
+上做了trade-off，本质上，在被锁对象层次结构下，意向锁的提出了解决了这样两个问题：（1）如果low level层次对象加了锁，那么其祖先节点现在想要做某个查询，如何快速判断是否能够获取到锁执行相应的操作？（2）如果high level
+节点获取了某种锁，接着另外一个事务想要在其孩子节点上做某些操作，是否能够直接获取到某种锁并执行相应的操作？因为本文提出了意向锁+root到leaf的加锁顺序，规范了整个lock protocol。
+	* Spark SQL: Relational Data Processing in Spark<br>
 	* Spanner: Google’s Globally-Distributed Database<br>
     * Spanner: Becoming a SQL System<br>
     * F1: A Distributed SQL Database That Scales<br>
@@ -138,9 +142,13 @@ ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算
     * Cloud Programming Simplified: A Berkeley View on Serverless Computing <br>
 该文是serverless最基础论文。
 
-* Survey
+* In-memory database
 	* Main memory database systems：an overview (H.G. Molina文章)<br>
-文章发表在1992年，但是对于main-memory问题的总结在今年看来仍然很适用，对比今天的main-memory db也都基本讨论了本文提出的所有问题，非常值得精读。
+文章发表在1992年，但是对于main-memory问题的总结在今年看来仍然很适用，对比今天的main-memory db也都基本讨论了本文提出的所有问题，非常值得精读。对in-memory中transaction、data storage、
+index、cache locality、log、lock manager都有比较经典的总结和思考。
+    * Staring into the Abyss: An Evaluation of Concurrency Control with One Thousand Cores<br>
+该文发表在2014年VLDB上，文章中主要揭示in-memory database在面临hundred of cores时，什么样的并发控制协议性能最好，扩展性最强，文章的结论是：目前存在的并发控制协议，都有局限性。
+因此对于当今硬件，应该from ground up进行software and hardware codesign。
 
 #### 参考资料
 
