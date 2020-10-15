@@ -81,7 +81,7 @@ Dynamo在读操作也希望能有半数以上的节点返回数据，读出的�
 因为Dynamo允许业务逻辑层处理数据的不一致性（比如在Amazon中，用户的购物车可以由用户自己来维护其一致性）。其中Grossip-based的协议实现信息在节点中的传播，
 这些古老的技术都在Dynamo得到了很好的应用。可以说Dynamo是结合了很多优秀实现技术的一个原型产品，堪称教科书式的实现。
 	* (SPARK)Resilient Distributed Datasets：A Fault-Tolerant Abstraction for In-Memory Cluster Computing<br>
-    * Granularity of Locks and Degrees of Consistency in a Shared Data BaseL<br>
+    * Granularity of Locks and Degrees of Consistency in a Shared Data Base<br>
 jim gray首次在提出granularity of lockable object，也就是被锁对象的粒度，粒度这个词很抽象，在这里granularity = size指的是被锁对象的大小。该文提出了intension lock，使得在系统的并发度和overhead of lock manager
 上做了trade-off，本质上，在被锁对象层次结构下，意向锁的提出了解决了这样两个问题：（1）如果low level层次对象加了锁，那么其祖先节点现在想要做某个查询，如何快速判断是否能够获取到锁执行相应的操作？（2）如果high level
 节点获取了某种锁，接着另外一个事务想要在其孩子节点上做某些操作，是否能够直接获取到某种锁并执行相应的操作？因为本文提出了意向锁+root到leaf的加锁顺序，规范了整个lock protocol。
