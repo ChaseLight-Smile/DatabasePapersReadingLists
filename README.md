@@ -5,7 +5,8 @@
  
 #### 概述
 
-该仓库将会介绍一些数据库、分布式系统领域的经典论文，包括SIGMOD、VLDB、ICDE、ATC、SOSP、ASPLOS、PPoPP、FAST、EuroSys、OSDI、NSDI、MOCRO、ISCA，按照自己的理解总结一些论文的思路和创新点。
+该仓库将会介绍一些数据库、分布式系统领域的经典论文，包括SIGMOD、VLDB、ICDE、ATC、SOSP、ASPLOS、PPoPP、FAST、EuroSys、OSDI、NSDI、MOCRO、ISCA，
+按照自己的理解总结一些论文的思路和创新点。**每日一篇，never stop！**
 
 #### **论文介绍**
 
@@ -135,6 +136,16 @@ hazard pointer(危险指针)，为什么叫做“危险指针”？本文给出�
     * aries: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging<br>
 ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算法作故障恢复，但是每个系统的实现可能略微有些差距。ARIES依赖WAL日志，并且规定数据真正写入到磁盘之前，日志必须首先写入磁盘，其引入了pageLSN，recoLSN、flushLSN、MasterRecord概念，使得log能够完整的追踪整个日志的状态，还提出了CLR等强有力的日志回滚机制，能够保证在log中如何实现回滚操作。LSN（log sequence number）是一个强大的机制，它本身是一个单调递增的counter，如何实现这个counter是一个比较重要的技术，尤其在分布式数据库中。很多当前最新的与事务相关的文章都借鉴了这个思想，比如Strong and Efficient Consistency with Consistency-Aware Durability (FAST 2020 best paper)中的durable index和persist index、update index也都是借鉴了log的LSN机制。该文较长，并且数学抽象较好，需要花费不少时间才能完全理解。
     * Why Do Computers Stop and What Can Be Done About It?
+	* Concurrency Control and Recovery [M. J. Franklin 1997]</br>
+https://courses.cs.washington.edu/courses/cse544/11wi/papers/franklin97.pdf 本文对并发控制和恢复给出了一个详细的综述，并且涉及到了ACID的发展历史。对于并发控制和恢复存在很多的解决办法，
+但是ACID模型将自己与其他模型分别开来，主要是由于两点：（1）在ACID模型中加入了隔离性和容错机制；（2）ACID模型将多个对不同对象的读写操作作为一个原子的、隔离的执行单元。ACID的这些方面都对数据
+提供了强有力的保护。当然实现这些特性的代价是增加了系统实现的复杂性，并且也产生了性能代价（其实就是一定程度上降低了并发度，但是保证了系统执行的逻辑正确性）。这些特性最终给使用DBMS的用户提供
+高可用和可靠性。本文也给出了“notion of correctness for concurrenct execution of transactions is serializability”，其中conflict serializability是最广泛被接受的事务正确性的概念。因为冲突可串行化
+不论是检测（detect）还是实现（enforce）都很高效并且容易实现。另外一个被广泛接受是view serializability，它比conflict serializability有更少的限制，因此会得到更多合法的调度结果。但是视图可串行化需要一个
+“上帝视角”，因此其只有理论价值，这主要是因为他们实现起来非常困难。总之，本文是非常好的综述，具体阅读笔记参见我的ppt.
+	*  Critique of ANSI SQL Isolation Levels<br>
+https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf 详细描述了基于不同concurrency control protocol下可能出现的anomoly以及对应的解决办法。我们平常所见的dirty read/unrepeatable read/phantom都是在
+基于locking的并发控制方法下得到的，在乐观并发方法和基于mvcc的并发方法中存在其他的异常，请参考本文来规范对隔离级别和一致性的trade-off。
 
 * Serverless
     * Catalyzer: Sub-millisecond Startup for Serverless Computing withInitialization-less Booting.(ASPLOS 2020)<br>
