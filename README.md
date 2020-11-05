@@ -135,7 +135,8 @@ hazard pointer(危险指针)，为什么叫做“危险指针”？本文给出�
 * Recovery
     * aries: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging<br>
 ARIES是1992年的文章，目前所有的数据库管理系统都采用ARIES算法作故障恢复，但是每个系统的实现可能略微有些差距。ARIES依赖WAL日志，并且规定数据真正写入到磁盘之前，日志必须首先写入磁盘，其引入了pageLSN，recoLSN、flushLSN、MasterRecord概念，使得log能够完整的追踪整个日志的状态，还提出了CLR等强有力的日志回滚机制，能够保证在log中如何实现回滚操作。LSN（log sequence number）是一个强大的机制，它本身是一个单调递增的counter，如何实现这个counter是一个比较重要的技术，尤其在分布式数据库中。很多当前最新的与事务相关的文章都借鉴了这个思想，比如Strong and Efficient Consistency with Consistency-Aware Durability (FAST 2020 best paper)中的durable index和persist index、update index也都是借鉴了log的LSN机制。该文较长，并且数学抽象较好，需要花费不少时间才能完全理解。
-    * Why Do Computers Stop and What Can Be Done About It?
+    * Why Do Computers Stop and What Can Be Done About It?</br>
+https://www.hpl.hp.com/techreports/tandem/TR-85.7.pdf
 	* Concurrency Control and Recovery [M. J. Franklin 1997]</br>
 https://courses.cs.washington.edu/courses/cse544/11wi/papers/franklin97.pdf 本文对并发控制和恢复给出了一个详细的综述，并且涉及到了ACID的发展历史。对于并发控制和恢复存在很多的解决办法，
 但是ACID模型将自己与其他模型分别开来，主要是由于两点：（1）在ACID模型中加入了隔离性和容错机制；（2）ACID模型将多个对不同对象的读写操作作为一个原子的、隔离的执行单元。ACID的这些方面都对数据
@@ -154,12 +155,17 @@ https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf
 该文是serverless最基础论文。
 
 * In-memory database
-	* Main memory database systems：an overview (H.G. Molina文章)<br>
+	* Survey
+		* Main memory database systems：an overview (H.G. Molina文章)<br>
 文章发表在1992年，但是对于main-memory问题的总结在今年看来仍然很适用，对比今天的main-memory db也都基本讨论了本文提出的所有问题，非常值得精读。对in-memory中transaction、data storage、
 index、cache locality、log、lock manager都有比较经典的总结和思考。
-    * Staring into the Abyss: An Evaluation of Concurrency Control with One Thousand Cores<br>
+	* Transactions
+		* Staring into the Abyss: An Evaluation of Concurrency Control with One Thousand Cores<br>
 该文发表在2014年VLDB上，文章中主要揭示in-memory database在面临hundred of cores时，什么样的并发控制协议性能最好，扩展性最强，文章的结论是：目前存在的并发控制协议，都有局限性。
 因此对于当今硬件，应该from ground up进行software and hardware codesign。
+	* Architecture
+		* NVRAMaware Logging in Transaction Systems</br>
+		* Let's Talk About Storage & Recovery Methods for Non-Volatile Memory Database Systems</br>
 
 #### 参考资料
 
