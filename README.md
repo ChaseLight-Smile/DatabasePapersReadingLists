@@ -143,8 +143,8 @@ https://courses.cs.washington.edu/courses/cse544/11wi/papers/franklin97.pdf 本�
 提供了强有力的保护。当然实现这些特性的代价是增加了系统实现的复杂性，并且也产生了性能代价（其实就是一定程度上降低了并发度，但是保证了系统执行的逻辑正确性）。这些特性最终给使用DBMS的用户提供
 高可用和可靠性。本文也给出了“notion of correctness for concurrenct execution of transactions is serializability”，其中conflict serializability是最广泛被接受的事务正确性的概念。因为冲突可串行化
 不论是检测（detect）还是实现（enforce）都很高效并且容易实现。另外一个被广泛接受是view serializability，它比conflict serializability有更少的限制，因此会得到更多合法的调度结果。但是视图可串行化需要一个
-“上帝视角”，因此其只有理论价值，这主要是因为他们实现起来非常困难。总之，本文是非常好的综述，具体阅读笔记参见我的ppt.
-	*  Critique of ANSI SQL Isolation Levels<br>
+“上帝视角”，因此其只有理论价值，这主要是因为他们实现起来非常困难。前半部分都是再讲concurrency control，后半部分都是再讲解recovery，给出了ARIES的basic idea和基本的工作流程.
+	*  A Critique of ANSI SQL Isolation Levels<br>
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf 详细描述了基于不同concurrency control protocol下可能出现的anomoly以及对应的解决办法。我们平常所见的dirty read/unrepeatable read/phantom都是在
 基于locking的并发控制方法下得到的，在乐观并发方法和基于mvcc的并发方法中存在其他的异常，请参考本文来规范对隔离级别和一致性的trade-off。
 
