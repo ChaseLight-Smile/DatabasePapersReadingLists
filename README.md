@@ -147,8 +147,7 @@ https://courses.cs.washington.edu/courses/cse544/11wi/papers/franklin97.pdf 本�
 	*  A Critique of ANSI SQL Isolation Levels<br>
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf 详细描述了基于不同concurrency control protocol下可能出现的anomoly以及对应的解决办法。我们平常所见的dirty read/unrepeatable read/phantom都是在
 基于locking的并发控制方法下得到的，在乐观并发方法和基于mvcc的并发方法中存在其他的异常，为什么ANSI还要将基于locking的anomaly和isolatin写入标准是因为现代的商业化数据库管理系统几乎都采用了基于锁的并发控制方法。文章开篇首先形式化地定义了ANSI SQL委员会给出的三个anomaly（Read Uncommitted、un-repeatable read、phantom）和对应的四个
-隔离级别，文中指出，这种形式化地定义比ANSI给出的英文描述更加清晰，也就是说本文的作者认为ANSI给出的Isolation level非常模糊。整个内容都整理成PPT，见https://github.com/EthanZhu-DB/PreBeamerTemplate/tree/master/An%20Evolution%20of%20Isolation%20Levels
-
+隔离级别，文中指出，这种形式化地定义比ANSI给出的英文描述更加清晰，也就是说本文的作者认为ANSI给出的Isolation level非常模糊。整个内容都整理成PPT，见https://github.com/EthanZhu-DB/Survey
 
 * Serverless
     * Catalyzer: Sub-millisecond Startup for Serverless Computing withInitialization-less Booting.(ASPLOS 2020)<br>
@@ -167,6 +166,7 @@ index、cache locality、log、lock manager都有比较经典的总结和思考�
 因此对于当今硬件，应该from ground up进行software and hardware codesign。
 	* Architecture
 		* NVRAMaware Logging in Transaction Systems</br>
+核心内容见https://github.com/EthanZhu-DB/Survey
 		* Let's Talk About Storage & Recovery Methods for Non-Volatile Memory Database Systems</br>
 
 #### 参考资料
