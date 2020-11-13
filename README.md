@@ -166,6 +166,8 @@ index、cache locality、log、lock manager都有比较经典的总结和思考�
 因此对于当今硬件，应该from ground up进行software and hardware codesign。
 	* Architecture
 		* NVRAMaware Logging in Transaction Systems</br>
+核心内容见https://github.com/EthanZhu-DB/Survey NA-logging's ARIES
+		* Scalable Logging through Emerging NonVolatile Memory<br>
 核心内容见https://github.com/EthanZhu-DB/Survey
 		* Let's Talk About Storage & Recovery Methods for Non-Volatile Memory Database Systems</br>
 
