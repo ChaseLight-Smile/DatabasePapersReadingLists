@@ -170,6 +170,9 @@ index、cache locality、log、lock manager都有比较经典的总结和思考�
 		* Scalable Logging through Emerging NonVolatile Memory<br>
 核心内容见https://github.com/EthanZhu-DB/Survey
 		* Let's Talk About Storage & Recovery Methods for Non-Volatile Memory Database Systems</br>
+		* Better I/O Through Byte-Addressable, Persistent Memory</br>
+		* System Software for Persistent Memory</br>
+		* NOVA: A Log-Structured File System for Hybrid Volatile/Non-Volatile Main Memories</br>
 	* Properties of Optane DIMM
 		* An empirical guide to the behavior and use of scalable persistent memory</br>
 该文详细测试了Optane DIMM的延时、带宽、访问类型、访问粒度、并发度等对性能的影响，并给出了4条最佳实战策略。Optane DIMM的性能不只是单单看成是延迟较高、吞吐较小的DRAM那么简单，其很多的性质并未像DRAM
