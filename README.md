@@ -175,6 +175,7 @@ index、cache locality、log、lock manager都有比较经典的总结和思考�
 该文详细测试了Optane DIMM的延时、带宽、访问类型、访问粒度、并发度等对性能的影响，并给出了4条最佳实战策略。Optane DIMM的性能不只是单单看成是延迟较高、吞吐较小的DRAM那么简单，其很多的性质并未像DRAM
 一样表现出单调性。本文同时指出，过去几十年在NVMM上的研究，应该被重新审视。 具体请参考 https://github.com/EthanZhu-DB/Survey 《NVM-aware Database Management Systems combined with Deep Learning: A Survey》
 		* A Survey of Non-Volatile Main Memory Technologies: State-of-the-Arts, Practices, and Future Directions</br>
+华中科技大学金海团队文章，涵盖了NVMM的几乎全部技术。
 
 #### 参考资料
 
