@@ -180,6 +180,7 @@ BPFS是在PCM DIMM上的第一篇in-memory file system的文章，作者来自�
 针对stray write提出了write protection方案，PMFS之后的PM文件系统都充分考虑了stray write问题。设计了pm_wbarrier原语，用于将数据真正刷回到PM设备，设计该原语的主要原因是在各种硬件设备中都具有write-combining buffer，这会导致乱序排序写操作，当出现crash时会造成不一致。这篇文章
 作者设计很精细，是高效利用PM设备不可多得的文章。
 		* NOVA: A Log-Structured File System for Hybrid Volatile/Non-Volatile Main Memories</br>
+NVSL组的文章，现在NOVA正在进入Linux的主线版本中，本文分别从数据组织、一致性方法、write protection以及文件操作等各个方面进行了详细的设计，并且在在内存中做了像radix tree、red-black tree（一种平衡树）等加速PM上的操作，这显然是在混合main memory和NVMM下的最优的方式。
 	* Properties of Optane DIMM
 		* An empirical guide to the behavior and use of scalable persistent memory</br>
 该文详细测试了Optane DIMM的延时、带宽、访问类型、访问粒度、并发度等对性能的影响，并给出了4条最佳实战策略。Optane DIMM的性能不只是单单看成是延迟较高、吞吐较小的DRAM那么简单，其很多的性质并未像DRAM
