@@ -181,6 +181,8 @@ BPFS是在PCM DIMM上的第一篇in-memory file system的文章，作者来自�
 作者设计很精细，是高效利用PM设备不可多得的文章。
 		* NOVA: A Log-Structured File System for Hybrid Volatile/Non-Volatile Main Memories</br>
 NVSL组的文章，现在NOVA正在进入Linux的主线版本中，本文分别从数据组织、一致性方法、write protection以及文件操作等各个方面进行了详细的设计，并且在在内存中做了像radix tree、red-black tree（一种平衡树）等加速PM上的操作，这显然是在混合main memory和NVMM下的最优的方式。
+		* Shortcut-JFS: A Write Efficient Journaling File System for Phase Change Memory</br>
+发表在MSST上的文章，很简洁，只有6页，但是清晰地传达出file system在做consistency时，结合in-place update+CoW+journaling时会得到最优的性能。
 	* Properties of Optane DIMM
 		* An empirical guide to the behavior and use of scalable persistent memory</br>
 该文详细测试了Optane DIMM的延时、带宽、访问类型、访问粒度、并发度等对性能的影响，并给出了4条最佳实战策略。Optane DIMM的性能不只是单单看成是延迟较高、吞吐较小的DRAM那么简单，其很多的性质并未像DRAM
