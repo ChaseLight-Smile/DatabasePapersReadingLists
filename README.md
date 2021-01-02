@@ -170,6 +170,7 @@ index、cache locality、log、lock manager都有比较经典的总结和思考�
 		* Scalable Logging through Emerging NonVolatile Memory<br>
 核心内容见https://github.com/EthanZhu-DB/Survey
 		* Let's Talk About Storage & Recovery Methods for Non-Volatile Memory Database Systems</br>
+CMU的Andy Pavlo的文章，写的非常好，很多技术，实验内容都做了笔记。主要描述了纯NVM数据库的data storage 和 recovery 技术。
 		* Better I/O Through Byte-Addressable, Persistent Memory</br>
 BPFS是在PCM DIMM上的第一篇in-memory file system的文章，作者来自微软。该文针对PCM DIMM设计了新型非易失性内存文件系统BPFS，BPFS的数据结构同经典的Disk-based Block file System，采用tree structure来管理三种类型的文件，分别是inode file、directory file、data file。
 首先要注意的一个问题是，在经典的文件系统设计中，每个问价都会对应一个directory file，比如/A/B/1.txt，那么对于1.txt这个文件，就对应一个directory文件，分别记录了文件的名字并且分配了一个inumber，inumber为0表示该文件对应的inode失效。并且/A/B/1.txt也对应一个data file文件
