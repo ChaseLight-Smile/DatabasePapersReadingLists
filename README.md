@@ -3,6 +3,8 @@
 ![Github stars](https://img.shields.io/github/stars/JunpengCode/DatabasePapersReadingLists.svg) ![](https://img.shields.io/github/license/JunpengCode/DatabasePapersReadingLists.svg) ![Github stars](https://img.shields.io/github/forks/JunpengCode/DatabasePapersReadingLists.svg)
 
  
+My research centres around the making of data-intensive systems that are fast, cost-effective and energy-efficient, in the context of persistent memory, massively parallel processors and next-generation networks. I often step into related areas such as parallel programming and operating systems while solving problems in database systems.
+ 
 #### 概述
 
 该仓库将会介绍一些数据库、分布式系统领域的经典论文，包括SIGMOD、VLDB、ICDE、ATC、SOSP、ASPLOS、PPoPP、FAST、EuroSys、OSDI、NSDI、MOCRO、ISCA，
