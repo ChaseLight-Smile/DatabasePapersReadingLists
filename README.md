@@ -191,6 +191,7 @@ NVSL组的文章，现在NOVA正在进入Linux的主线版本中，本文分别�
 将热数据放到DRAM中（保留了main memory数据库的性能），将温数据放到nvm上，将冷数据放到SSD上，并且数据原始存放在SSD上，提出了三种策略，分别用于DRAM Eviction（采用clock algorithm）、NVM Admission（从DRAM中eviction出的数据首先进入到admission set中，当有page从DRAM中淘汰出时，首先检查是否在admission set中，如果不在，则将page放入admission set中，同时数据保留在SSD中，
 如果在admission set中命中，那么将数据转移到NVM中，同时从admission set移除，这些数据被识别为温数据，该方法在2003年被提出）和NVM Eviction（采用clock algorithm），同时还采用了pointer swizzling技术和conbined page mapping table（本质上是一个hash table），将nvm和DRAM的page mapping table同时管理。该数据库比main memory能承载更大的数据量，在性能上只比main memory数据库差不多。
 本文也对比了纯NVM数据库（Andy Pavlo在Let's Talk About Storage & Recovery Methods for Non-Volatile Memory Database Systems中详细描述）和DRAM+NVM数据库（FOEDUS），同时本文为了更好的利用NVM的byte addressable能力，创新性地提出cache-grained-page-size和full-page-size两种模式，能更好的利用DRAM的存储空间，同时利用了NVM的byte addressable能力减少了读放大。 
+		* Storage Management in the NVRAM Era </br>
 	* Properties of Optane DIMM
 		* An empirical guide to the behavior and use of scalable persistent memory</br>
 该文详细测试了Optane DIMM的延时、带宽、访问类型、访问粒度、并发度等对性能的影响，并给出了4条最佳实战策略。Optane DIMM的性能不只是单单看成是延迟较高、吞吐较小的DRAM那么简单，其很多的性质并未像DRAM
