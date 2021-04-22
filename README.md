@@ -199,11 +199,11 @@ NVSL组的文章，现在NOVA正在进入Linux的主线版本中，本文分别�
 		* A Survey of Non-Volatile Main Memory Technologies: State-of-the-Arts, Practices, and Future Directions</br>
 华中科技大学金海团队文章，从当前热点的nvmm研究角度入手写的，比如如何做wear leveling，如何保证consistency等。也综述了当前比较热门的混合架构。
 
-* Multi-Version Concurrency Control of Main-Memory DBMS(Protocols)
-    *  T. Neumann, et al., Fast Serializable Multi-Version Concurrency Control for Main-Memory Database Systems, in SIGMOD, 2015 
-    *  H. Lim, et al., Cicada: Dependably Fast Multi-Core In-Memory Transactions, in SIGMOD, 2017 (Optional)
-    *  P.-A. Larson, et al., High-Performance Concurrency Control Mechanisms for Main-Memory Databases, in VLDB, 2011
-
+	* Multi-Version Concurrency Control of Main-Memory DBMS(Protocols)
+		* T. Neumann, et al., Fast Serializable Multi-Version Concurrency Control for Main-Memory Database Systems, in SIGMOD, 2015 
+		* H. Lim, et al., Cicada: Dependably Fast Multi-Core In-Memory Transactions, in SIGMOD, 2017
+		* P.-A. Larson, et al., High-Performance Concurrency Control Mechanisms for Main-Memory Databases, in VLDB, 2011
+		* Efficient Transaction Processing in SAP HANA Database - The End of a Column Store Myth
 #### 参考资料
 
 * https://www.kawabangga.com/db
