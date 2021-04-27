@@ -149,7 +149,7 @@ https://courses.cs.washington.edu/courses/cse544/11wi/papers/franklin97.pdf 本�
 	*  A Critique of ANSI SQL Isolation Levels<br>
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf 详细描述了基于不同concurrency control protocol下可能出现的anomoly以及对应的解决办法。我们平常所见的dirty read/unrepeatable read/phantom都是在
 基于locking的并发控制方法下得到的，在乐观并发方法和基于mvcc的并发方法中存在其他的异常，为什么ANSI还要将基于locking的anomaly和isolatin写入标准是因为现代的商业化数据库管理系统几乎都采用了基于锁的并发控制方法。文章开篇首先形式化地定义了ANSI SQL委员会给出的三个anomaly（Read Uncommitted、un-repeatable read、phantom）和对应的四个
-隔离级别，文中指出，这种形式化地定义比ANSI给出的英文描述更加清晰，也就是说本文的作者认为ANSI给出的Isolation level非常模糊。整个内容都整理成PPT，见https://github.com/EthanZhu-DB/Survey
+隔离级别，文中指出，这种形式化地定义比ANSI给出的英文描述更加清晰，也就是说本文的作者认为ANSI给出的Isolation level非常模糊。
 
 * Serverless
     * Catalyzer: Sub-millisecond Startup for Serverless Computing withInitialization-less Booting.(ASPLOS 2020)<br>
@@ -168,9 +168,7 @@ index、cache locality、log、lock manager都有比较经典的总结和思考�
 因此对于当今硬件，应该from ground up进行software and hardware codesign。
 	* Architecture
 		* NVRAMaware Logging in Transaction Systems</br>
-核心内容见https://github.com/EthanZhu-DB/Survey NA-logging's ARIES
 		* Scalable Logging through Emerging NonVolatile Memory<br>
-核心内容见https://github.com/EthanZhu-DB/Survey
 		* Let's Talk About Storage & Recovery Methods for Non-Volatile Memory Database Systems</br>
 CMU的Andy Pavlo的文章，写的非常好，很多技术，实验内容都做了笔记。主要描述了纯NVM数据库的data storage 和 recovery 技术。
 		* Better I/O Through Byte-Addressable, Persistent Memory</br>
@@ -195,7 +193,7 @@ NVSL组的文章，现在NOVA正在进入Linux的主线版本中，本文分别�
 	* Properties of Optane DIMM
 		* An empirical guide to the behavior and use of scalable persistent memory</br>
 该文详细测试了Optane DIMM的延时、带宽、访问类型、访问粒度、并发度等对性能的影响，并给出了4条最佳实战策略。Optane DIMM的性能不只是单单看成是延迟较高、吞吐较小的DRAM那么简单，其很多的性质并未像DRAM
-一样表现出单调性。本文同时指出，过去几十年在NVMM上的研究，应该被重新审视。 具体请参考 https://github.com/EthanZhu-DB/Survey 《NVM-aware Database Management Systems combined with Deep Learning: A Survey》
+一样表现出单调性。本文同时指出，过去几十年在NVMM上的研究，应该被重新审视。
 		* A Survey of Non-Volatile Main Memory Technologies: State-of-the-Arts, Practices, and Future Directions</br>
 华中科技大学金海团队文章，从当前热点的nvmm研究角度入手写的，比如如何做wear leveling，如何保证consistency等。也综述了当前比较热门的混合架构。
 
