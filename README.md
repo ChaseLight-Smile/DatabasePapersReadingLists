@@ -8,7 +8,7 @@ My research centres around the making of data-intensive systems that are fast, c
 #### 概述
 
 该仓库将会介绍一些数据库、分布式系统领域的经典论文，包括SIGMOD、VLDB、ICDE、ATC、SOSP、ASPLOS、PPoPP、FAST、EuroSys、OSDI、NSDI、MOCRO、ISCA，
-按照自己的理解总结一些论文的思路和创新点。**每日一篇，never stop！**
+按照自己的理解总结一些论文的思路和创新点。
 
 #### **论文介绍**
 
