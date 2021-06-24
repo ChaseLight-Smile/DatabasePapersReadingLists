@@ -1,8 +1,8 @@
 ### 数据库论文阅读目录
 
-![Github stars](https://img.shields.io/github/stars/Ethanzjp/DatabasePapersReadingLists.svg) 
-![](https://img.shields.io/github/license/Ethanzjp/DatabasePapersReadingLists.svg) 
-![Github stars](https://img.shields.io/github/forks/Ethanzjp/DatabasePapersReadingLists.svg)
+![Github stars](https://img.shields.io/github/stars/Ethanzjp/DBMSology.svg) 
+![](https://img.shields.io/github/license/Ethanzjp/DBMSology.svg) 
+![Github stars](https://img.shields.io/github/forks/Ethanzjp/DBMSology.svg)
 
  
 I am interested in the intersection of machine learning and systems.
